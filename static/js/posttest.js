@@ -213,8 +213,20 @@ function loadquiz(){
 			// show number of correct answers out of total
 			alert('Hey, You got '+ numCorrect + ' out of ' + questions.length)
 			resultsContainer.innerHTML = 'You got '+ numCorrect + ' out of ' + questions.length;
-				// code will go here
-					// Start file download. 
+
+			 // Always show certificate section after quiz completion
+			if (document.getElementById('certificateSection')) {
+				document.getElementById('certificateSection').style.display = 'block';
+				
+				// Connect the certificate generation button
+				if (document.getElementById('generateCertificate')) {
+					document.getElementById('generateCertificate').onclick = function() {
+						generatePdfCertificate(numCorrect, questions.length);
+					};
+				}
+			}
+			
+			// Start file download. 
 		    document.getElementById("selectedAns").addEventListener("click", function() { 
 		        // Generate download of hello.txt file with some content 
 		        
@@ -240,9 +252,58 @@ function loadquiz(){
 			var saveAns=document.getElementById("selectedAns")
 			saveAns.style.display='inline-block'
       var simulation = document.getElementById("simulateButton")
-      simulation.style.display='inline-block'
-
+      if (simulation) {
+        simulation.style.display='inline-block'
+      }
 		}
 	}
+	
+	// Add this helper function to work with the certificate generation code in the HTML
+	function generatePdfCertificate(score, total) {
+		// This function will be called by the certificate generation button
+		// The actual PDF generation is handled by the script in posttest.html
+		// This just prepares the data for that script
+		
+		const studentName = document.getElementById('studentName').value.trim();
+		
+		if (!studentName) {
+			alert('Please enter your name to generate the certificate');
+			return;
+		}
+		
+		// Get current date
+		const today = new Date();
+		const date = today.toLocaleDateString('en-US', {
+			year: 'numeric', 
+			month: 'long', 
+			day: 'numeric'
+		});
+		
+		// Update certificate template with student data
+		document.getElementById('certName').textContent = studentName;
+		document.getElementById('certScore').textContent = score + ' out of ' + total;
+		document.getElementById('certDate').textContent = date;
+		
+		// Make template visible for html2canvas but off-screen
+		const template = document.getElementById('certificateTemplate');
+		template.style.display = 'block';
+		template.style.position = 'fixed';
+		template.style.top = '-9999px';
+		
+		// Convert to canvas and then PDF
+		html2canvas(template, {scale: 2}).then(canvas => {
+			const imgData = canvas.toDataURL('image/png');
+			const pdf = new jsPDF('landscape', 'mm', 'a4');
+			const imgWidth = 297;  // A4 landscape width
+			const imgHeight = canvas.height * imgWidth / canvas.width;
+			
+			pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+			pdf.save('huffman_coding_certificate_' + studentName.replace(/\s+/g, '_') + '.pdf');
+			
+			// Hide template again
+			template.style.display = 'none';
+		});
+	}
+	
 	generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 }

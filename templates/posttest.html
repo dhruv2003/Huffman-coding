@@ -12,6 +12,9 @@
   <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	 crossorigin="anonymous">
+  <!-- Add jsPDF library for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body bgcolor="#000066">
@@ -45,11 +48,126 @@
           <div id="results"></div>
           <button id="submit" class="btn btn-primary">Check answers</button>
          <!-- <button id="secondbutton" onclick="location.href='{% url 'answers' %}'" class="btn btn-danger" style="display: none;">View Answers</button> -->
-          <button type="submit" class="btn btn-warning mt-1" id="selectedAns" style="display: none; position: relative;">Download</button>
+          <button type="submit" class="btn btn-warning mt-1" id="selectedAns" style="display: none; position: relative;">Download Results</button>
+          
+          <!-- Certificate Generator - initially hidden -->
+          <div id="certificateSection" class="mt-4 pt-3 border-top" style="display: none;">
+            <h4>Generate Completion Certificate</h4>
+            <p>Congratulations on completing the Huffman Coding Virtual Lab! Generate your certificate below.</p>
+            
+            <div class="form-group">
+              <label for="studentName">Full Name:</label>
+              <input type="text" class="form-control" id="studentName" placeholder="Enter your full name">
+            </div>
+            
+            <button id="generateCertificate" class="btn btn-success">
+              <i class="fa fa-certificate"></i> Generate Certificate
+            </button>
+          </div>
+
+          <!-- Hidden div for certificate template -->
+          <div id="certificateTemplate" style="display: none; width: 800px; height: 600px; padding: 20px; text-align: center; border: 10px solid #787878; margin-bottom: 20px;">
+            <div style="width: 750px; height: 550px; padding: 20px; text-align: center; border: 5px solid #787878">
+              <span style="font-size: 50px; font-weight: bold">Certificate of Completion</span>
+              <br><br>
+              <span style="font-size: 25px"><i>This is to certify that</i></span>
+              <br><br>
+              <span style="font-size: 30px"><b id="certName">Student Name</b></span><br/><br/>
+              <span style="font-size: 25px"><i>has successfully completed the</i></span> <br/><br/>
+              <span style="font-size: 30px">Huffman Coding Virtual Lab</span> <br/><br/>
+              <span style="font-size: 20px">with score: <b id="certScore">Score</b></span> <br/><br/><br/><br/>
+              <span style="font-size: 25px"><i>Date: <span id="certDate"></span></i></span><br>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
     <script type="text/javascript" src="{% static 'js/posttest.js' %}"></script>
+    <script>
+      // Certificate generation script
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize jsPDF
+        window.jsPDF = window.jspdf.jsPDF;
+        
+        // Show certificate section after quiz completion
+        function showCertificateSection(score, total) {
+          document.getElementById('certificateSection').style.display = 'block';
+          
+          // Set up the generate certificate button
+          document.getElementById('generateCertificate').addEventListener('click', function() {
+            generateCertificate(score, total);
+          });
+        }
+        
+        // Generate certificate function
+        function generateCertificate(score, total) {
+          const studentName = document.getElementById('studentName').value.trim();
+          
+          if (!studentName) {
+            alert('Please enter your name to generate the certificate');
+            return;
+          }
+          
+          // Get current date
+          const today = new Date();
+          const date = today.toLocaleDateString('en-US', {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric'
+          });
+          
+          // Update certificate template with student data
+          document.getElementById('certName').textContent = studentName;
+          document.getElementById('certScore').textContent = score + ' out of ' + total;
+          document.getElementById('certDate').textContent = date;
+          
+          // Make template visible for html2canvas but off-screen
+          const template = document.getElementById('certificateTemplate');
+          template.style.display = 'block';
+          template.style.position = 'fixed';
+          template.style.top = '-9999px';
+          
+          // Convert to canvas and then PDF
+          html2canvas(template, {scale: 2}).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('landscape', 'mm', 'a4');
+            const imgWidth = 297;  // A4 landscape width
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            pdf.save('huffman_coding_certificate_' + studentName.replace(/\s+/g, '_') + '.pdf');
+            
+            // Hide template again
+            template.style.display = 'none';
+          });
+        }
+        
+        // Extend the original quiz completion function
+        const originalShowResults = showResults;
+        if (typeof showResults === 'function') {
+          window.showResults = function(questions, quizContainer, resultsContainer) {
+            // Call the original function first
+            const result = originalShowResults(questions, quizContainer, resultsContainer);
+            
+            // Get score information
+            const resultsText = resultsContainer.textContent;
+            const scoreMatch = resultsText.match(/You got (\d+) out of (\d+)/);
+            
+            if (scoreMatch) {
+              const score = parseInt(scoreMatch[1]);
+              const total = parseInt(scoreMatch[2]);
+              
+              // Show certificate section if score is good (optional threshold)
+              if (score >= 1) { // You can change this threshold as needed
+                showCertificateSection(score, total);
+              }
+            }
+            
+            return result;
+          };
+        }
+      });
+    </script>
 </body>
 </html>
