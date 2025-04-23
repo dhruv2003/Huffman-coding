@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: vlab-huffman
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn Vlab_Huffman.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: False
+      - key: PYTHON_VERSION
+        value: 3.9.6
