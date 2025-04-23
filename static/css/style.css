@@ -1,0 +1,55 @@
+body{
+    background-color:#000066;
+}
+
+.container{
+    background-color:white;
+}
+
+.wrap1{
+    margin-left:22rem;
+}
+
+.wrap2{
+   margin-left: 33rem;
+}
+
+.wrap3{
+    margin-left: 31rem;
+}
+
+.card-header{
+    width: 250px;
+    height: 3rem;
+}
+
+.images{
+    width: 250px;
+    height: 250px;
+}
+
+.card-body {
+  height: 10rem;
+}
+
+.signal_check {
+    padding-left: 2rem;
+}
+
+h4{
+  padding: .6rem;
+  line-height:25px;
+  font-size: 1em;
+}
+
+.img-responsive trans{
+  border: black;
+}
+
+p{
+  text-indent: 30px;
+}
+
+.row{
+  width: 1160px;
+}

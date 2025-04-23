@@ -1,0 +1,19 @@
+body{
+  background-color: #000066 !important;
+  font-size: 20px;
+}
+
+.whole_body{
+    background-color: white !important;
+    font-size: 20px !important;
+}
+
+.container{
+    background-color: white;
+}
+
+.img-diagram{
+  height: 300px;
+  width: 450px;
+  margin-bottom: 20px;
+}

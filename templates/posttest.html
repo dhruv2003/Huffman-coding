@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Post-Test</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/quiz.css' %}">
+    
+  <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	 crossorigin="anonymous">
+</head>
+
+<body bgcolor="#000066">
+	<div id="nav-placeholder" style="background-color:white; position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
+		<ul>
+			<li><a href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Theory" height="90px" class="active" width="100px"></a><a  href="{% url 'home' %}">Aim</a></li>
+	  <li ><a  href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"></a><a  href="{% url 'theory' %}">Theory</a></li>
+	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
+	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
+	  <li><a href="{% url 'simulation' %}"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'simulation' %}">Simulation</a></li>
+	  <li><a href="#"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="#">Post-Test</a></li>
+	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
+    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
+	</ul>
+  		
+  	</div>
+
+  	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:1800px; width:1160px;margin-bottom: 20px">
+	  	<div style="font-size:30px; text-align:center;padding-top: 5px">
+    		<b> Understanding Huffman Coding </b>
+    	</div>
+      <h3 style="display: block; margin-left: 20px;">Post-test:</h3><br>
+	    
+      <div class="container" id="initial">
+        <button class="btn btn-primary" id="start-quiz" onclick="loadquiz()">Take Quiz</button>
+      </div>
+      <div class="container">
+        <div id="quiz body" style="position: relative;top: 20px;left: 20px;display: none; ">
+          <h3>Solve these questions</h3>
+          <div id="quiz"></div>
+          <div id="results"></div>
+          <button id="submit" class="btn btn-primary">Check answers</button>
+         <!-- <button id="secondbutton" onclick="location.href='{% url 'answers' %}'" class="btn btn-danger" style="display: none;">View Answers</button> -->
+          <button type="submit" class="btn btn-warning mt-1" id="selectedAns" style="display: none; position: relative;">Download</button>
+        </div>
+      </div>
+
+    </div>
+    <script type="text/javascript" src="{% static 'js/posttest.js' %}"></script>
+</body>
+</html>

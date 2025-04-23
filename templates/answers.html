@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Answers</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/answers.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
+	<meta charset="utf-8">
+</head>
+<body bgcolor="#000066">
+
+	<div id="nav-placeholder" style="background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
+  	<ul>
+  	  <li ><img src="../../static/images/aim.png" alt="Theory" height="90px" class="active" width="100px"><a  href="{% url 'home' %}">Aim</a></li>
+	  <li ><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"><a  href="{% url 'theory' %}">Theory</a></li>
+	  <li><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"><a href="{% url 'procedure' %}">Procedure</a></li>
+	  <li><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"><a href="{% url 'pretest' %}">Pre-Test</a></li>
+	  <li><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"><a href="{% url 'simulation' %}">Simulation</a></li>
+	  <li><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"><a href="../quiz/postTest.html">Post-Test</a></li>
+	  <li><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"><a href="{% url 'references' %}">References</a></li>
+    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
+	</ul>
+  		
+  	</div>
+
+	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:900px; width:1160px;margin-bottom: 20px">
+		<div style="font-size:30px; text-align:center;padding-top: 5px">
+    		<b> Eye Diagram </b>
+    	</div>
+	<h4 style="position: relative;top: 20px;left: 20px">
+		These are the correct answers
+	</h4>
+	<P style="position: relative;top: 20px;left: 20px;right: 20px">
+		1. Answer: c<br>
+		Explanation: Basics of Eye Diagram Formation.<br>
+		2. Answer: b<br>
+		Explanation: Eye Diagram is used in Digital Communication systems to determine quality of signal transmitted.<br>
+		3. Answer: d<br>
+		Explanation: Noise, difference in phase and Amplitude play role in formation of eye diagram.<br>
+		4. Answer: b<br>
+		Explanation: Eye Diagram is independent of Absolute temperature of medium.<br>
+		5. Answer: c<br>
+		Explanation: SNR is least at the point of maximum opening.<br>
+		6. Answer: b<br>
+		Explanation: More noise in channel, more the distortion in eye diagram.<br>
+		7. Answer: a<br>
+		Explanation: Noise at midpoint of an eye diagram is zero. Hence it is used as a reference point while measuring noise.<br>
+		8. Answer: b<br>
+		Explanation: Generation of eye diagram is done in an oscilloscope using sawtooth waves.<br>
+		9. Answer: d<br>
+		Explanation: SNR is zero as noise tends to infinity. Hence height of eye diagram is zero making it a straight line.<br>
+		10. Answer: a<br>
+		Explanation: Horizontal axis measures time while vertical measures the amplitude of signals in eye diagram.<br>
+	</P>
+</div>
+
+</body>
+</html>

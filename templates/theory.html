@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Theory</title>
+  </head>
+  <body bgcolor="#000066">
+
+  	<div id="nav-placeholder" style="background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
+  	<ul>
+  	  <li ><a  href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Theory" height="90px" class="active" width="100px"></a><a  href="../index.html">Aim</a></li>
+	  <li ><a  href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"></a><a  href="#">Theory</a></li>
+	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
+	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
+	  <li><a href="#" onclick="alert('Complete Pre Test to perform Simulation')"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Pre Test to perform Simulation')">Simulation</a></li>
+	  <li><a href="#" onclick="alert('Complete Simulation to access Post Test')"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Simulation to access Post Test')">Post-Test</a></li>
+	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
+    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
+	</ul>
+  		
+  	</div>
+  		
+
+  	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto;height:100%; width:1160px;margin-bottom: 20px;padding-bottom: 20px">
+    <div style="font-size:30px; text-align:center;">
+        <b> Understanding Huffman code </b>
+    </div>
+    <h3 style="display: block; margin-left: 20px; font-size:25px;"><b>Theory:</b></h3>
+    <h3 style="display: block; margin-left: 20px;"><b>What is Huffman coding?</b> </h3>
+    <p style="margin-left: 20px; text-indent:0;">Huffman coding is a popular lossless Variable Length Coding (VLC) scheme, based on the following principles: <br> Shorter code words are assigned to more probable symbols and longer code words are assigned to less probable symbols.<br> No code word of a symbol is a prefix of another code word. <br> This makes Huffman coding uniquely decodable. <br> Every source symbol must have a unique code word assigned to it.</p>
+    <img src="../../static/images/huffman.PNG" style="width: 800px; height: 300px"></img>
+    <h3 style="display: block; margin-left: 20px;"><b>Steps for Huffman coding:</b></h3>
+    <ol style="display: block; margin-left: 20px;margin-right: 20px">
+      <li>List the given source of symbols in order of their specified decreasing probability.</li>
+      <li>Assign a binary logic ‘0’ and ‘1’ to the two source symbols of lowest probability in the list obtained in above step. <i>(There are two types of Huffman coding Type-I and Type-II)</i> </li>
+      <li>In Type-II, we assign 1 to the symbol of lowest probability and 0 to the symbol with probability greater than it. Here, Type-I is implemented which works according to point 2.</li>
+      <li>Add the probability of these two source symbols and regard it as one new source symbol. This result into reduction of the size of the list of source symbols by 1.</li>
+      <li>Place the assigned probability of the new symbol, high or low in the list with the rest of symbols, with their given probabilities.</li>
+      <li>While putting the probabilities, in case of same probabilities the probability obtained by adding the lowest probabilities will be placed first.</li>
+      <li>Repeat the procedure specified in steps from 2 to 4, till final set of 2 source symbols is obtained.</li>
+      <li>Assign binary logic 0  & 1 to the final two source symbols and all obtained symbols in step 5.</li>
+      <li>Determine Codeword for each original source symbol by working backword and tracing the sequence of binary logic values.</li>
+    </ol>
+    <h3 style="display: block; margin-left: 20px;"><b>Note:</b></h3>
+    <ul><li> To calculate huffman code of a string, calculate the probability of occurence of each character and follow the steps above.</li> 
+    <li>For example, if the given string is ;aabbbc' then probability of occurence of a character: (frequency of character)/(length of string)</li>
+    <li>In 'aabbbc', probability of occurence of a is : 2/6=0.3 as 'a' occurs twice and length of string is 6</li>
+    <li>Similarly probabilities of other distinct characters can be calculated and it should be noted that their sum equals 1.</li>
+    <li>If frequency of characters is given, then probability of occurence = character frequency/length of string</li></ul>
+
+
+    <h3 style="display: block; margin-left: 20px;"><b>Properties of Huffman coding:</b> </h3>
+      <ul>
+		    <li>Huffman Coding is a famous Greedy Algorithm.</li>
+		    <li>It is used for the lossless compression of data.</li>
+        <li>It uses variable length encoding.</li>
+		    <li>It assigns variable length code to all the characters.</li>
+        <li>The code length of a character depends on how frequently it occurs in the given text.</li>
+		    <li>The length of the character code is inversely proportional to it's probability of occurence</li>
+	    </ul>
+    </div>
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+  </body>
+</html>

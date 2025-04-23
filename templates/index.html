@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Huffman Coding Virtual Lab</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="nav-placeholder">
+  	<ul>
+  	  <li><a href="#"><img src="../../static/images/aim.png" alt="Aim" height="90px" class="active" width="100px"></a><a href="#">Aim</a></li>
+	  <li><a href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'theory' %}">Theory</a></li>
+	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Procedure" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
+	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Pre-Test" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
+	  <li><a href="#" onclick="alert('Complete Pre Test to perform Simulation')"><img src="../../static/images/simulation.png" alt="Simulation" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Pre Test to perform Simulation')">Simulation</a></li>
+	  <li><a href="#" onclick="alert('Complete Simulation to access Post Test')"><img src="../../static/images/post-test.png" alt="Post-Test" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Simulation to access Post Test')">Post-Test</a></li>
+	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="References" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
+    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
+	</ul>
+  </div>
+
+  <div id="whole_body">
+    <div class="section-title">
+      <b>Understanding Huffman Code</b>
+    </div>
+	    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h3 class="mb-0">Aim: Learn and calculate Huffman code for given symbols</h3>
+            </div>
+            <div class="card-body">
+              <h4 class="mb-3">Broad Goal of the experiment:</h4>
+              <ul class="mb-4">
+                <li>To understand the concept of Huffman coding</li>
+                <li>To observe the compression characteristics of Huffman code</li>
+              </ul>
+              
+              <h4 class="mb-3">Learning Outcome:</h4>
+              <ul>
+                <li>After successful completion of the experiment, student will be able to compute Huffman code for a given string</li>
+              </ul>
+              
+              <div class="text-center mt-4">
+                <a href="{% url 'theory' %}" class="btn btn-primary">Start Learning</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

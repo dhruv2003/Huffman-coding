@@ -1,0 +1,134 @@
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  background-color: #000066;
+  margin: 0;
+  padding: 0;
+}
+
+#nav-placeholder {
+  background-color: white;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  height: 100%;
+  width: 1160px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#nav-placeholder > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #3385ff;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#nav-placeholder li {
+  float: left;
+  transition: background-color 0.3s;
+}
+
+#nav-placeholder li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+#nav-placeholder img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px 8px;
+  transition: transform 0.2s;
+}
+
+#nav-placeholder li:hover {
+  background-color: #1066;
+}
+
+#nav-placeholder li:hover img {
+  transform: scale(1.05);
+}
+
+#whole_body {
+  background-color: white;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  min-height: 600px;
+  width: 1160px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#whole_body img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 1.6;
+}
+
+h3, h4 {
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #333;
+}
+
+.section-title {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn-primary {
+  background-color: #3385ff;
+  border-color: #2a75e6;
+}
+
+.btn-primary:hover {
+  background-color: #2a75e6;
+  border-color: #2166d1;
+}
+
+@media (max-width: 1200px) {
+  #nav-placeholder, #whole_body {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav-placeholder li {
+    width: 25%;
+  }
+  
+  #nav-placeholder img {
+    height: 70px;
+    width: auto;
+  }
+}
+

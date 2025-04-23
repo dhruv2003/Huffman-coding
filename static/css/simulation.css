@@ -1,0 +1,125 @@
+body {
+  background-color: #000066 !important;
+  font-size: 18px;
+}
+
+#container1 {
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+
+#container2 {
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+
+.question {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#exampleFormControlTextarea1 {
+  margin-top: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #f5f5f5;
+  padding: 12px 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.btn-link {
+  color: #3385ff;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #2a75e6;
+  text-decoration: none;
+}
+
+.table {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.table thead th {
+  vertical-align: middle;
+  background-color: #343a40;
+  color: white;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+textarea {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 5px;
+  resize: none;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-header {
+  background-color: #f5f5f5;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-body img {
+  display: block;
+  margin: 15px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.fa-arrow-right {
+  color: #3385ff;
+}
+
+#toPostTest {
+  margin: 20px 0;
+  padding: 8px 16px;
+}
+
+#SelectOption {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 200px;
+}
+
+/* Count nav-pills */
+.nav {
+  counter-reset: number;
+  padding: 12px 0;
+}
+.nav > li > a:before {
+  content: counter(number);
+  counter-increment: number;
+}
+
+/* Make the images wide and responsive. */
+.carousel-inner img {
+  height: auto;
+  width: 100%;
+}
