@@ -23,7 +23,7 @@
                     <li>In Section 1, you'll calculate Huffman codes for each character in a string.</li>
                     <li>In Section 2, you'll select the correct input sequence that would produce the given output.</li>
                 </ol>
-                <button type="button" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#procedureModal">
+                <button type="button" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#procedureModal" id="viewInstructionsBtn">
                     <i class="fas fa-list-ol me-2"></i>View Detailed Instructions
                 </button>
             </div>
@@ -176,6 +176,22 @@
         document.getElementById("toPostTest").disabled = true;
         document.getElementById("checkAnswer1Btn").addEventListener('click', checkAnswer1);
         document.getElementById("checkSection2Btn").addEventListener('click', checkSection2);
+
+        // Initialize the modal instance
+        const procedureModal = new bootstrap.Modal(document.getElementById('procedureModal'), {
+            backdrop: true,
+            keyboard: true,
+            focus: true
+        });
+        
+        // Clean event handler for the instructions button
+        const viewInstructionsBtn = document.getElementById('viewInstructionsBtn');
+        if (viewInstructionsBtn) {
+            viewInstructionsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                procedureModal.show();
+            });
+        }
     });
 
     function checkAnswer1() {

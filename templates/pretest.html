@@ -169,21 +169,12 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Remove conflicting container styling
-        document.querySelectorAll('.container').forEach(function(container) {
-            if (!container.classList.contains('main-content')) {
-                container.style.maxWidth = '100%';
-                container.style.padding = '0';
-                container.style.backgroundColor = 'transparent';
-            }
-        });
+        // Remove the container and row style modifications that are causing the navbar issue
+        // Only keep what's necessary for the pretest content area
         
-        // Fix row styling
-        document.querySelectorAll('.row').forEach(function(row) {
-            if (!row.classList.contains('pretest-row')) {
-                row.style.width = '100%';
-                row.style.margin = '0';
-            }
+        // Fix pretest container width
+        document.querySelectorAll('.pretest-container').forEach(function(container) {
+            container.style.width = '100%';
         });
         
         document.getElementById('checkAnswersBtn').addEventListener('click', checkAnswer);
