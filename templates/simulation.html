@@ -1,238 +1,235 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}"> 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/simulation.css' %}"> 
-	<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Huffman Coding Simulation</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
 
-<body>
-  <div id="nav-placeholder">
-    <ul>
-      <li><a href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Aim" height="90px" width="100px"></a><a href="{% url 'home' %}">Aim</a></li>
-      <li><a href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'theory' %}">Theory</a></li>
-      <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Procedure" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
-      <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Pre-Test" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
-      <li><a href="#"><img src="../../static/images/simulation.png" alt="Simulation" height="90px" width="100px"></a><a href="#">Simulation</a></li>
-      <li><a href="#" onclick="alert('Complete Simulation to access Post Test')"><img src="../../static/images/post-test.png" alt="Post-Test" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Simulation to access Post Test')">Post-Test</a></li>
-      <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="References" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
-      <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
-    </ul>
-  </div>
-      
-  <div id="whole_body">
-    <div class="section-title">
-      <b>Understanding Huffman Coding - Simulation</b>
+{% block title %}Simulation: Huffman Coding{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/simulation.css' %}">
+{% endblock %}
+
+{% block page_title %}Understanding Huffman Coding - Simulation{% endblock %}
+
+{% block content %}
+<div class="row fade-in">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Instructions</h5>
+            </div>
+            <div class="card-body">
+                <p>The simulation consists of 2 sections that test your understanding of Huffman coding.</p>
+                <ol>
+                    <li>In Section 1, you'll calculate Huffman codes for each character in a string.</li>
+                    <li>In Section 2, you'll select the correct input sequence that would produce the given output.</li>
+                </ol>
+                <button type="button" class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#procedureModal">
+                    <i class="fas fa-list-ol me-2"></i>View Detailed Instructions
+                </button>
+            </div>
+        </div>
+
+        <div class="accordion" id="simulationAccordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-chevron-down me-2"></i>Section I: Calculate Huffman Codes
+                        </button>
+                    </h5>
+                </div>
+          
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#simulationAccordion">
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <p><strong>Task:</strong> Calculate and enter the correct Huffman codes for each character in the string "aabbcddeeeccddeedbce"</p>
+                            <p>Analyze the frequency of each character and build the Huffman tree to determine the codes.</p>
+                        </div>
+                      
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Characters</th>
+                                    <th scope="col"><center>a</center></th>
+                                    <th scope="col"><center>b</center></th>
+                                    <th scope="col"><center>c</center></th>
+                                    <th scope="col"><center>d</center></th>
+                                    <th scope="col"><center>e</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Codes</th>
+                                    <td><center><input type="text" class="form-control text-center" id="col1" placeholder="Code"></center></td>
+                                    <td><center><input type="text" class="form-control text-center" id="col2" placeholder="Code"></center></td>
+                                    <td><center><input type="text" class="form-control text-center" id="col3" placeholder="Code"></center></td>
+                                    <td><center><input type="text" class="form-control text-center" id="col4" placeholder="Code"></center></td>
+                                    <td><center><input type="text" class="form-control text-center" id="col5" placeholder="Code"></center></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button class="btn btn-primary px-4" id="checkAnswer1Btn">
+                                <i class="fas fa-check-circle me-2"></i>Check Answers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link w-100 text-start collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fas fa-chevron-down me-2"></i>Section II: Input Sequence Selection
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#simulationAccordion">
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <p><strong>Task:</strong> Given the character frequencies p-2, q-4, r-5, s-3, t-1, select the correct input sequence for the shown output.</p>
+                            <p><em>The output Huffman code begins with the code of the left-most input character and ends with the code of rightmost input character.</em></p>
+                        </div>
+                      
+                        <div class="row align-items-center justify-content-center my-4">
+                            <div class="col-md-3 text-center">
+                                <label for="SelectOption" class="form-label">Select Input Sequence:</label>
+                                <input id="SelectOption" class="form-control text-center" type="text" list="sequenceOptions" placeholder="Choose sequence">
+                                <datalist id="sequenceOptions">
+                                    <option value="qrstp">
+                                    <option value="strpq">
+                                    <option value="ptrqs">
+                                    <option value="sptqr">
+                                </datalist>         
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <i class="fas fa-arrow-right fa-2x"></i>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <button class="btn btn-danger" disabled>Source Encoder</button>
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <i class="fas fa-arrow-right fa-2x"></i>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <h5 class="mt-2 p-2 border border-info rounded"><u>111010010001</u></h5>
+                            </div>
+                        </div>
+                      
+                        <div class="text-center mt-4">
+                            <button class="btn btn-success px-4" id="checkSection2Btn">
+                                <i class="fas fa-check-circle me-2"></i>Check Answer
+                            </button>
+                        </div>
+                      
+                        <div class="mt-4 text-center">
+                            <button id="toPostTest" class="btn btn-primary" onclick="location.href='{% url 'posttest' %}'" disabled>
+                                <i class="fas fa-arrow-right me-2"></i>Proceed to Post-Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="procedureModal" tabindex="-1" role="dialog" aria-labelledby="procedureModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
+<!-- Modal -->
+<div class="modal fade" id="procedureModal" tabindex="-1" aria-labelledby="procedureModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="procedureModalTitle">Simulation Procedure</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <ol>
-              <li>The simulation consists of 2 sections that test your understanding of Huffman coding.</li>
-              <li>In Section 1, you need to calculate and enter the correct Huffman codes for each character in the given string "aabbcddeeeccddeedbce".</li>
-              <img src="{% static 'images/pro1.PNG' %}" alt="Section 1" class="img-fluid">
-              <li>After entering all codes, click "Check Answers" to verify. If correct, proceed to Section 2.</li>
-              <li>In Section 2, you need to select the correct input sequence from the dropdown that would produce the given output code using the provided character frequencies.</li>
-              <img src="{% static 'images/pro.png' %}" alt="Section 2" class="img-fluid">
-              <li>After completing both sections correctly, you'll be able to move to the Post-Test section.</li>
-            </ol>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row mb-4">
-        <div class="col-md-12">
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#procedureModal">
-            <i class="fa fa-info-circle"></i> View Procedure
-          </button>
-        </div>
-      </div>
-
-      <div class="accordion" id="simulationAccordion">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <i class="fa fa-chevron-down"></i> Section I: Calculate Huffman Codes
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#simulationAccordion">
-            <div class="card-body">
-              <div class="alert alert-info">
-                <p><strong>Task:</strong> Calculate and enter the correct Huffman codes for each character in the string "aabbcddeeeccddeedbce"</p>
-                <p>Analyze the frequency of each character and build the Huffman tree to determine the codes.</p>
-              </div>
-              
-              <table class="table table-bordered">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Characters</th>
-                    <th scope="col"><center>a</center></th>
-                    <th scope="col"><center>b</center></th>
-                    <th scope="col"><center>c</center></th>
-                    <th scope="col"><center>d</center></th>
-                    <th scope="col"><center>e</center></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Codes</th>
-                    <td><center><textarea id="col1" rows="1" cols="5" placeholder="Code"></textarea></center></td>
-                    <td><center><textarea id="col2" rows="1" cols="5" placeholder="Code"></textarea></center></td>
-                    <td><center><textarea id="col3" rows="1" cols="5" placeholder="Code"></textarea></center></td>
-                    <td><center><textarea id="col4" rows="1" cols="5" placeholder="Code"></textarea></center></td>
-                    <td><center><textarea id="col5" rows="1" cols="5" placeholder="Code"></textarea></center></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="text-center">
-                <button class="btn btn-primary px-4" onclick="checkAnswer1();">
-                  <i class="fa fa-check-circle"></i> Check Answers
-                </button>
-              </div>
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="procedureModalTitle">Simulation Procedure</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
-        </div>
-        
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <i class="fa fa-chevron-down"></i> Section II: Input Sequence Selection
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#simulationAccordion">
-            <div class="card-body">
-              <div class="alert alert-info">
-                <p><strong>Task:</strong> Given the character frequencies p-2, q-4, r-5, s-3, t-1, select the correct input sequence for the shown output.</p>
-                <p><em>The output Huffman code begins with the code of the left-most input character and ends with the code of rightmost input character.</em></p>
-              </div>
-              
-              <div class="row align-items-center justify-content-center my-4">
-                <div class="col-md-3 text-center">
-                  <label for="SelectOption" class="form-label">Select Input Sequence:</label>
-                  <input id="SelectOption" class="form-control" type="text" list="sequenceOptions" placeholder="Choose sequence">
-                  <datalist id="sequenceOptions">
-                    <option value="qrstp">
-                    <option value="strpq">
-                    <option value="ptrqs">
-                    <option value="sptqr">
-                  </datalist>         
-                </div>
-                <div class="col-md-1 text-center">
-                  <i class="fa fa-arrow-right fa-2x"></i>
-                </div>
-                <div class="col-md-3 text-center">
-                  <button class="btn btn-danger" disabled>Source Encoder</button>
-                </div>
-                <div class="col-md-1 text-center">
-                  <i class="fa fa-arrow-right fa-2x"></i>
-                </div>
-                <div class="col-md-3 text-center">
-                  <h5 class="mt-2 p-2 border border-info rounded"><u>111010010001</u></h5>
-                </div>
-              </div>
-              
-              <div class="text-center mt-4">
-                <button class="btn btn-success px-4" onclick="checkSection2()">
-                  <i class="fa fa-check-circle"></i> Check Answer
-                </button>
-              </div>
-              
-              <div class="mt-4 text-right">
-                <button id="toPostTest" class="btn btn-primary" onclick="location.href='{% url 'posttest' %}'" disabled>
-                  <i class="fa fa-arrow-right"></i> Proceed to Post-Test
-                </button>
-              </div>
+            <div class="modal-body">
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">The simulation consists of 2 sections that test your understanding of Huffman coding.</li>
+                    <li class="list-group-item">In Section 1, you need to calculate and enter the correct Huffman codes for each character in the given string "aabbcddeeeccddeedbce".</li>
+                    <li class="list-group-item">
+                        <div class="text-center my-3">
+                            <img src="{% static 'images/pro1.PNG' %}" alt="Section 1" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </li>
+                    <li class="list-group-item">After entering all codes, click "Check Answers" to verify. If correct, proceed to Section 2.</li>
+                    <li class="list-group-item">In Section 2, you need to select the correct input sequence from the dropdown that would produce the given output code using the provided character frequencies.</li>
+                    <li class="list-group-item">
+                        <div class="text-center my-3">
+                            <img src="{% static 'images/pro.png' %}" alt="Section 2" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </li>
+                    <li class="list-group-item">After completing both sections correctly, you'll be able to move to the Post-Test section.</li>
+                </ol>
             </div>
-          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+{% endblock %}
 
-  <script>
-    document.getElementById("toPostTest").disabled = true;
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("toPostTest").disabled = true;
+        document.getElementById("checkAnswer1Btn").addEventListener('click', checkAnswer1);
+        document.getElementById("checkSection2Btn").addEventListener('click', checkSection2);
+    });
 
     function checkAnswer1() {
-      var a = document.getElementById("col1").value;
-      var b = document.getElementById("col2").value;
-      var c = document.getElementById("col3").value;
-      var d = document.getElementById("col4").value;
-      var e = document.getElementById("col5").value;
+        var a = document.getElementById("col1").value;
+        var b = document.getElementById("col2").value;
+        var c = document.getElementById("col3").value;
+        var d = document.getElementById("col4").value;
+        var e = document.getElementById("col5").value;
     
-      if (
-        a == "011" &&
-        b == "010" &&
-        c == "11" &&
-        d == "10" &&
-        e == "00" 
-      ) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Correct!',
-          text: 'You can now proceed to Section 2',
-          confirmButtonColor: '#3385ff'
-        });
-        document.getElementById("collapseTwo").classList.add("show");
-        document.querySelector('[data-target="#collapseTwo"]').classList.remove("collapsed");
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Incorrect',
-          text: 'Please check your answers and try again',
-          confirmButtonColor: '#3385ff'
-        });
-      }
+        if (
+            a == "011" &&
+            b == "010" &&
+            c == "11" &&
+            d == "10" &&
+            e == "00" 
+        ) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Correct!',
+                text: 'You can now proceed to Section 2',
+                confirmButtonColor: '#3385ff'
+            });
+            document.getElementById("collapseTwo").classList.add("show");
+            document.querySelector('[data-bs-target="#collapseTwo"]').classList.remove("collapsed");
+            document.querySelector('[data-bs-target="#collapseTwo"]').setAttribute("aria-expanded", "true");
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Incorrect',
+                text: 'Please check your answers and try again',
+                confirmButtonColor: '#3385ff'
+            });
+        }
     }
 
     function checkSection2() {
-      var answer = document.querySelector('#SelectOption').value;
-      if (answer == "strpq") {
-        Swal.fire({
-          icon: 'success',
-          title: 'Correct!',
-          text: 'You can now proceed to the Post-Test section',
-          confirmButtonColor: '#3385ff'
-        });
-        document.getElementById("toPostTest").disabled = false;
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Incorrect',
-          text: 'Please try again with a different sequence',
-          confirmButtonColor: '#3385ff'
-        });
-      }
+        var answer = document.querySelector('#SelectOption').value;
+        if (answer == "strpq") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Correct!',
+                text: 'You can now proceed to the Post-Test section',
+                confirmButtonColor: '#3385ff'
+            });
+            document.getElementById("toPostTest").disabled = false;
+            localStorage.setItem('simulationCompleted', 'true');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Incorrect',
+                text: 'Please try again with a different sequence',
+                confirmButtonColor: '#3385ff'
+            });
+        }
     }
-  </script>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-</body>
-</html>
+</script>
+{% endblock %}

@@ -1,0 +1,443 @@
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4895ef;
+    --success-color: #4cc9f0;
+    --warning-color: #f72585;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --text-base-size: 16px;
+    --text-sm-size: 14px;
+    --text-lg-size: 18px;
+    --heading-size: 22px;
+    --title-size: 28px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    font-size: var(--text-base-size);
+}
+
+.main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.navbar .container {
+    max-width: 1200px;
+    padding: 0 15px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.navbar-nav {
+    margin-left: auto;
+    align-items: center;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: white !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: var(--text-sm-size);
+    padding: 0.5rem 1rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-item.active .nav-link {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.nav-item {
+    margin: 0 2px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    padding: 0.5rem 0.75rem !important;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item .nav-link {
+    position: relative;
+}
+
+.nav-item.active .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: var(--heading-size);
+}
+
+.card-body {
+    padding: 1.75rem;
+    font-size: var(--text-base-size);
+}
+
+.card-body > .row,
+.card > .row {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+p, li {
+    font-size: var(--text-base-size);
+}
+
+h1 {
+    font-size: calc(var(--title-size) * 1.2);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: var(--title-size);
+    font-weight: 600;
+}
+
+h3 {
+    font-size: calc(var(--heading-size) * 1.1);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: var(--heading-size);
+    font-weight: 600;
+}
+
+h5 {
+    font-size: calc(var(--heading-size) * 0.9);
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: var(--title-size);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    font-size: var(--text-sm-size);
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #20bf55, #01baef);
+    border: none;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #fd7e14, #f9c74f);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e63946, #d62828);
+    border: none;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Form elements */
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+    border-color: var(--primary-color);
+}
+
+/* Tables */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: var(--text-sm-size);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    background-color: rgba(67, 97, 238, 0.1);
+    border-bottom: none;
+    padding: 1rem;
+    font-size: var(--text-sm-size);
+    font-weight: 600;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 100%;
+}
+
+/* Card Groups */
+.card-group {
+    gap: 20px;
+}
+
+.card-group .card {
+    margin-bottom: 20px;
+}
+
+/* Accordion */
+.accordion {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.accordion-button {
+    padding: 1.25rem;
+    font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgba(67, 97, 238, 0.1);
+    color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Additional global styles to ensure consistent appearance */
+#whole_body {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+/* Convert all images to be responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Ensure consistent container styling */
+.container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    background-color: transparent;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-fluid.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Override any conflicting container styles from other CSS files */
+#whole_body .container, 
+.main-content .container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Fix for container classes in all pages */
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    width: 100%;
+}
+
+.main-content .row {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.pretest-row,
+.row.fade-in {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+/* Fix for old style.css container conflicts */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: transparent;
+}
+
+.main-content .container {
+    padding: 0;
+    width: 100%;
+}
+
+/* Override problematic width settings from older CSS files */
+[class*="col-"] {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    :root {
+        --text-base-size: 15px;
+        --text-sm-size: 13px;
+        --text-lg-size: 17px;
+        --heading-size: 20px;
+        --title-size: 24px;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}

@@ -1,47 +1,41 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>References</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
-</head>
-<body bgcolor="#000066">
-	<div id="nav-placeholder" style="background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
-  	  	<ul>
-  	  <li ><a href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'home' %}">Aim</a></li>
-	  <li ><a  href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"></a><a  href="{% url 'theory' %}">Theory</a></li>
-	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
-	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
-	  <li><a href="{% url 'simulation' %}"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'simulation' %}">Simulation</a></li>
-	  <li><a href="{% url 'posttest' %}"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'posttest' %}">Post-Test</a></li>
-	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" class="active" width="100px"></a><a href="{% url 'references' %}">References</a></li>
-    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
 
-	</ul>
-  		
-  	</div>
+{% block title %}References: Huffman Coding{% endblock %}
 
-  	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:600px; width:1160px;margin-bottom: 20px">
-	  	<div style="font-size:30px; text-align:center;padding-top: 5px">
-    		<b> Understanding Huffman Coding </b>
-    	</div>
-	    
-	<h3 style="display: block; margin-left: 20px;">References:</h3>
-	<h4 style="display: block; margin-left: 20px;">Books Referred:</h4>
-	<div id="pdfin">
-		<ul>
-			<li>Digital Communications: Fundamentals and Applications, 2nd Edition Bernard Sklar, University of California, Los Angeles</li>
-			<li>Digital Communication Systems by Haykin Simon 4th Edition, Tata Mcgraw Hill Publications</li>
-			
-		</ul>
-		<h4 style="display: block; margin-left: 20px;">Websites:</h4>
-		<ul>
-			<li><a href="https://youtu.be/yhPjST1w0mk">https://youtu.be/yhPjST1w0mk</a></li>
-		</ul>
+{% block page_title %}Understanding Huffman Coding - References{% endblock %}
+
+{% block content %}
+<div class="row fade-in">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Books Referred</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent"><i class="fas fa-book me-2 text-primary"></i>Digital Communications: Fundamentals and Applications, 2nd Edition Bernard Sklar, University of California, Los Angeles</li>
+                    <li class="list-group-item bg-transparent"><i class="fas fa-book me-2 text-primary"></i>Digital Communication Systems by Haykin Simon 4th Edition, Tata McGraw Hill Publications</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Websites</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent">
+                        <i class="fas fa-link me-2 text-primary"></i>
+                        <a href="https://youtu.be/yhPjST1w0mk" target="_blank" class="text-decoration-none">
+                            YouTube: Huffman Coding Tutorial <i class="fas fa-external-link-alt ms-1 small"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-	</div>
-</body>
-</html>
+</div>
+{% endblock %}

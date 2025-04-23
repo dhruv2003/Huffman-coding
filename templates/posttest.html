@@ -1,173 +1,101 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Post-Test</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/quiz.css' %}">
-    
-  <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	 crossorigin="anonymous">
-  <!-- Add jsPDF library for PDF generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
+{% block title %}Post-Test: Huffman Coding{% endblock %}
 
-<body bgcolor="#000066">
-	<div id="nav-placeholder" style="background-color:white; position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
-		<ul>
-			<li><a href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Theory" height="90px" class="active" width="100px"></a><a  href="{% url 'home' %}">Aim</a></li>
-	  <li ><a  href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"></a><a  href="{% url 'theory' %}">Theory</a></li>
-	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
-	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
-	  <li><a href="{% url 'simulation' %}"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'simulation' %}">Simulation</a></li>
-	  <li><a href="#"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="#">Post-Test</a></li>
-	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
-    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
-	</ul>
-  		
-  	</div>
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/quiz.css' %}">
+{% endblock %}
 
-  	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:1800px; width:1160px;margin-bottom: 20px">
-	  	<div style="font-size:30px; text-align:center;padding-top: 5px">
-    		<b> Understanding Huffman Coding </b>
-    	</div>
-      <h3 style="display: block; margin-left: 20px;">Post-test:</h3><br>
-	    
-      <div class="container" id="initial">
-        <button class="btn btn-primary" id="start-quiz" onclick="loadquiz()">Take Quiz</button>
-      </div>
-      <div class="container">
-        <div id="quiz body" style="position: relative;top: 20px;left: 20px;display: none; ">
-          <h3>Solve these questions</h3>
-          <div id="quiz"></div>
-          <div id="results"></div>
-          <button id="submit" class="btn btn-primary">Check answers</button>
-         <!-- <button id="secondbutton" onclick="location.href='{% url 'answers' %}'" class="btn btn-danger" style="display: none;">View Answers</button> -->
-          <button type="submit" class="btn btn-warning mt-1" id="selectedAns" style="display: none; position: relative;">Download Results</button>
-          
-          <!-- Certificate Generator - initially hidden -->
-          <div id="certificateSection" class="mt-4 pt-3 border-top" style="display: none;">
-            <h4>Generate Completion Certificate</h4>
-            <p>Congratulations on completing the Huffman Coding Virtual Lab! Generate your certificate below.</p>
-            
-            <div class="form-group">
-              <label for="studentName">Full Name:</label>
-              <input type="text" class="form-control" id="studentName" placeholder="Enter your full name">
+{% block page_title %}Understanding Huffman Coding - Post-Test{% endblock %}
+
+{% block content %}
+<div class="row fade-in">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Instructions</h5>
             </div>
-            
-            <button id="generateCertificate" class="btn btn-success">
-              <i class="fa fa-certificate"></i> Generate Certificate
-            </button>
-          </div>
-
-          <!-- Hidden div for certificate template -->
-          <div id="certificateTemplate" style="display: none; width: 800px; height: 600px; padding: 20px; text-align: center; border: 10px solid #787878; margin-bottom: 20px;">
-            <div style="width: 750px; height: 550px; padding: 20px; text-align: center; border: 5px solid #787878">
-              <span style="font-size: 50px; font-weight: bold">Certificate of Completion</span>
-              <br><br>
-              <span style="font-size: 25px"><i>This is to certify that</i></span>
-              <br><br>
-              <span style="font-size: 30px"><b id="certName">Student Name</b></span><br/><br/>
-              <span style="font-size: 25px"><i>has successfully completed the</i></span> <br/><br/>
-              <span style="font-size: 30px">Huffman Coding Virtual Lab</span> <br/><br/>
-              <span style="font-size: 20px">with score: <b id="certScore">Score</b></span> <br/><br/><br/><br/>
-              <span style="font-size: 25px"><i>Date: <span id="certDate"></span></i></span><br>
+            <div class="card-body">
+                <p>Complete this quiz to test your understanding of Huffman coding concepts.</p>
+                <p>After completing the quiz, you'll be able to generate a certificate of completion.</p>
+                <div class="text-center mt-3" id="initial">
+                    <button class="btn btn-primary" id="start-quiz">
+                        <i class="fas fa-play-circle me-2"></i>Take Quiz
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
+        
+        <div id="quiz-container" style="display: none;">
+            <div class="card">
+                <div class="card-body">
+                    <h4><i class="fas fa-question-circle me-2"></i>Solve these questions</h4>
+                    <div id="quiz"></div>
+                    <div id="results" class="alert alert-info mt-4" style="display: none;"></div>
+                    <div class="text-center mt-4">
+                        <button id="submit" class="btn btn-primary">
+                            <i class="fas fa-check-circle me-2"></i>Check Answers
+                        </button>
+                        <button type="submit" class="btn btn-warning mt-1" id="selectedAns" style="display: none;">
+                            <i class="fas fa-download me-2"></i>Download Results
+                        </button>
+                    </div>
+                    
+                    <!-- Certificate Generator - initially hidden -->
+                    <div id="certificateSection" class="mt-5 pt-4 border-top" style="display: none;">
+                        <h4><i class="fas fa-certificate me-2"></i>Generate Completion Certificate</h4>
+                        <p>Congratulations on completing the Huffman Coding Virtual Lab! Generate your certificate below.</p>
+                        
+                        <div class="form-group mt-4">
+                            <label for="studentName">Full Name:</label>
+                            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button id="generateCertificate" class="btn btn-success">
+                                <i class="fas fa-certificate me-2"></i>Generate Certificate
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden div for certificate template -->
+                    <div id="certificateTemplate" style="display: none; width: 800px; height: 600px; padding: 20px; text-align: center; border: 10px solid #787878; margin-bottom: 20px;">
+                        <div style="width: 750px; height: 550px; padding: 20px; text-align: center; border: 5px solid #787878">
+                            <span style="font-size: 50px; font-weight: bold">Certificate of Completion</span>
+                            <br><br>
+                            <span style="font-size: 25px"><i>This is to certify that</i></span>
+                            <br><br>
+                            <span style="font-size: 30px"><b id="certName">Student Name</b></span><br/><br/>
+                            <span style="font-size: 25px"><i>has successfully completed the</i></span> <br/><br/>
+                            <span style="font-size: 30px">Huffman Coding Virtual Lab</span> <br/><br/>
+                            <span style="font-size: 20px">with score: <b id="certScore">Score</b></span> <br/><br/><br/><br/>
+                            <span style="font-size: 25px"><i>Date: <span id="certDate"></span></i></span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script type="text/javascript" src="{% static 'js/posttest.js' %}"></script>
-    <script>
-      // Certificate generation script
-      document.addEventListener('DOMContentLoaded', function() {
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="{% static 'js/posttest.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Initialize jsPDF
         window.jsPDF = window.jspdf.jsPDF;
         
-        // Show certificate section after quiz completion
-        function showCertificateSection(score, total) {
-          document.getElementById('certificateSection').style.display = 'block';
-          
-          // Set up the generate certificate button
-          document.getElementById('generateCertificate').addEventListener('click', function() {
-            generateCertificate(score, total);
-          });
-        }
-        
-        // Generate certificate function
-        function generateCertificate(score, total) {
-          const studentName = document.getElementById('studentName').value.trim();
-          
-          if (!studentName) {
-            alert('Please enter your name to generate the certificate');
-            return;
-          }
-          
-          // Get current date
-          const today = new Date();
-          const date = today.toLocaleDateString('en-US', {
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric'
-          });
-          
-          // Update certificate template with student data
-          document.getElementById('certName').textContent = studentName;
-          document.getElementById('certScore').textContent = score + ' out of ' + total;
-          document.getElementById('certDate').textContent = date;
-          
-          // Make template visible for html2canvas but off-screen
-          const template = document.getElementById('certificateTemplate');
-          template.style.display = 'block';
-          template.style.position = 'fixed';
-          template.style.top = '-9999px';
-          
-          // Convert to canvas and then PDF
-          html2canvas(template, {scale: 2}).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('landscape', 'mm', 'a4');
-            const imgWidth = 297;  // A4 landscape width
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            
-            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-            pdf.save('huffman_coding_certificate_' + studentName.replace(/\s+/g, '_') + '.pdf');
-            
-            // Hide template again
-            template.style.display = 'none';
-          });
-        }
-        
-        // Extend the original quiz completion function
-        const originalShowResults = showResults;
-        if (typeof showResults === 'function') {
-          window.showResults = function(questions, quizContainer, resultsContainer) {
-            // Call the original function first
-            const result = originalShowResults(questions, quizContainer, resultsContainer);
-            
-            // Get score information
-            const resultsText = resultsContainer.textContent;
-            const scoreMatch = resultsText.match(/You got (\d+) out of (\d+)/);
-            
-            if (scoreMatch) {
-              const score = parseInt(scoreMatch[1]);
-              const total = parseInt(scoreMatch[2]);
-              
-              // Show certificate section if score is good (optional threshold)
-              if (score >= 1) { // You can change this threshold as needed
-                showCertificateSection(score, total);
-              }
-            }
-            
-            return result;
-          };
-        }
-      });
-    </script>
-</body>
-</html>
+        // Start quiz button
+        document.getElementById('start-quiz').addEventListener('click', function() {
+            document.getElementById('initial').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            loadquiz();
+        });
+    });
+</script>
+{% endblock %}

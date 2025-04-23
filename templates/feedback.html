@@ -1,32 +1,36 @@
+{% extends 'base.html' %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Aim</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
-</head>
-<body bgcolor="#000066">
-	<div id="nav-placeholder" style="background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px">
-  	<ul>
-  	  <li ><a href="{% url 'home' %}"><img src="../../static/images/aim.png"  alt="Theory" height="90px" class="active" width="100px"></a><a href="{% url 'home' %}">Aim</a></li>
-	  <li ><a href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px" width="100px"></a><a  href="{% url 'theory' %}">Theory</a></li>
-	  <li><a href="{% url 'procedure' %}"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'procedure' %}">Procedure</a></li>
-	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
-	  <li><a href="#" onclick="alert('Complete Pre Test to perform Simulation')"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Pre Test to perform Simulation')">Simulation</a></li>
-	  <li><a href="#" onclick="alert('Complete Simulation to access Post Test')"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Simulation to access Post Test')">Post-Test</a></li>
-	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
-    <li><a href="#"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="#">Feedback</a></li>
+{% block title %}Feedback: Huffman Coding{% endblock %}
 
-	</ul>
-	</div>
+{% block page_title %}Feedback Form{% endblock %}
 
-  <div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:1500px; width:1160px;margin-bottom: 20px">
-	  	<div style="font-size:30px; text-align:center;padding-top: 5px">
-    		 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScoI9bRFWPgzbddThl6kFOAijwlT3sEk2Bsk8Zy8ixunZu8gg/viewform?embedded=true" width="1200px" height="2000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    	</div>
-  </div>
-  </body>
-</html>
+{% block content %}
+<div class="row fade-in">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body px-0 py-0">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScoI9bRFWPgzbddThl6kFOAijwlT3sEk2Bsk8Zy8ixunZu8gg/viewform?embedded=true" 
+                        width="100%" 
+                        height="700" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        class="feedback-frame">
+                    Loading…
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .feedback-frame {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+</style>
+{% endblock %}

@@ -1,51 +1,55 @@
+{% extends 'base.html' %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Procedure</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/maincss.css' %}">
+{% block title %}Procedure: Huffman Coding{% endblock %}
 
-</head>
-<body bgcolor="#000066">
-	<div id="nav-placeholder" style="background-color:white; position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px;">
-  	<ul>
-  	  <li ><a  href="{% url 'home' %}"><img src="../../static/images/aim.png" alt="Theory" height="90px" width="100px"></a><a  href="{% url 'home' %}">Aim</a></li>
-	  <li ><a  href="{% url 'theory' %}"><img src="../../static/images/theory.png" alt="Theory" height="90px"  width="100px"></a><a  href="{% url 'theory' %}">Theory</a></li>
-	  <li><a href="#"><img src="../../static/images/Procedure.png" alt="Theory" height="90px" class="active" width="100px"></a><a href="#">Procedure</a></li>
-	  <li><a href="{% url 'pretest' %}"><img src="../../static/images/pre-test.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'pretest' %}">Pre-Test</a></li>
-	  <li><a href="#" onclick="alert('Complete Pre Test to perform Simulation')"><img src="../../static/images/simulation.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Pre Test to perform Simulation')">Simulation</a></li>
-	  <li><a href="#" onclick="alert('Complete Simulation to access Post Test')"><img src="../../static/images/post-test.png" alt="Theory" height="90px" width="100px"></a><a href="#" onclick="alert('Complete Simulation to access Post Test')">Post-Test</a></li>
-	  <li><a href="{% url 'references' %}"><img src="../../static/images/references.png" alt="Theory" height="90px" width="100px"></a><a href="{% url 'references' %}">References</a></li>
-    <li><a href="{% url 'feedback' %}"><img src="../../static/images/feedback.png" alt="Feedback" height="90px" width="100px"></a><a href="{% url 'feedback' %}">Feedback</a></li>
-	</ul>
-  		
-  	</div>
+{% block page_title %}Understanding Huffman Coding - Procedure{% endblock %}
 
-  	<div id="whole_body" style=" background-color:white;position:relative; margin-left:auto; margin-right:auto; margin-top:20px;height:100%; width:1160px;margin-bottom: 20px;padding-bottom: 20px">
-	  	<div style="font-size:30px; text-align:center;padding-top: 5px">
-    		 <b> Understanding Eye diagram </b>
-    	</div>
-  
-  <h3 style="display: block; margin-left: 20px;">Procedure for Pre-Test:</h3>
-	<ol style="display: block; margin-left: 20px;margin-right: 20px">
-		<li>Fill the correct values in the table fields and click on 'Check answers' to check your response.</li>
-    <img src="{% static 'images/pro3.png' %}" alt="simulator image" height="300px" width="700px"><br>
-		<li>After submission of a correct response, the 'Perform Simulation' button is activated and then you can move to the Simulation section.</li>
-	</ol>    
-	<h3 style="display: block; margin-left: 20px;">Procedure for Simulation:</h3>
-	<ol style="display: block; margin-left: 20px; margin-right: 20px">
-		<li> The simulation tab consists of 2 sections.</li>
-		<li> In the first section, the user needs to enter the correct Huffman codes for each character in the given string .</li><br>
-		<img src="{% static 'images/pro1.PNG' %}" alt="simulator image" height="300px" width="1100px"><br>
-		<li>On clicking the Check answer button, it shows whether the code submitted by the user is correct or not. Then the user may proceed to Section 2. </li>
-    <li>In the second section, the user needs to select the correct input sequence from the dropdown such that the given output is obtained. On submission of correct answer, the user will be allowed to move to the Post-Test section.</li>
-    <img src="{% static 'images/pro.png' %}" alt="simulator image" height="300px" width="900px"><br>
-		<li>Click on <b>'Perform Post-test'</b> to move to the next section.</li>
-	</ol>
-
-	</div>
-</body>
-</html>
+{% block content %}
+<div class="row fade-in">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Procedure for Pre-Test</h4>
+            </div>
+            <div class="card-body">
+                <ol class="list-group list-group-numbered mb-4">
+                    <li class="list-group-item bg-transparent">Fill the correct values in the table fields and click on 'Check answers' to check your response.</li>
+                    <li class="list-group-item bg-transparent">
+                        <div class="text-center my-3">
+                            <img src="{% static 'images/pro3.png' %}" alt="simulator image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent">After submission of a correct response, the 'Perform Simulation' button is activated and then you can move to the Simulation section.</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Procedure for Simulation</h4>
+            </div>
+            <div class="card-body">
+                <ol class="list-group list-group-numbered mb-4">
+                    <li class="list-group-item bg-transparent">The simulation tab consists of 2 sections.</li>
+                    <li class="list-group-item bg-transparent">In the first section, the user needs to enter the correct Huffman codes for each character in the given string.</li>
+                    <li class="list-group-item bg-transparent">
+                        <div class="text-center my-3">
+                            <img src="{% static 'images/pro1.PNG' %}" alt="simulator image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent">On clicking the Check answer button, it shows whether the code submitted by the user is correct or not. Then the user may proceed to Section 2.</li>
+                    <li class="list-group-item bg-transparent">In the second section, the user needs to select the correct input sequence from the dropdown such that the given output is obtained. On submission of correct answer, the user will be allowed to move to the Post-Test section.</li>
+                    <li class="list-group-item bg-transparent">
+                        <div class="text-center my-3">
+                            <img src="{% static 'images/pro.png' %}" alt="simulator image" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </li>
+                    <li class="list-group-item bg-transparent">Click on <b>'Perform Post-test'</b> to move to the next section.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Huffman Coding Virtual Lab{% endblock %}</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/modern.css' %}">
+    <style>
+        /* Critical navbar styling for consistency */
+        body {
+            padding-top: 0;
+            overflow-x: hidden;
+        }
+        .navbar {
+            position: relative;
+            width: 100%;
+        }
+        .main-wrapper {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        .row {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .container {
+            background-color: transparent;
+        }
+        .navbar .container {
+            background: transparent;
+            box-shadow: none;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="container-fluid px-0 main-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <i class="fas fa-code-branch me-2"></i>Huffman Coding Lab
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-bullseye me-1"></i> Aim</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/theory' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'theory' %}"><i class="fas fa-book me-1"></i> Theory</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/procedure' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'procedure' %}"><i class="fas fa-clipboard-list me-1"></i> Procedure</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/pretest' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'pretest' %}"><i class="fas fa-vial me-1"></i> Pre-Test</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/simulation' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'simulation' %}" id="sim-link"><i class="fas fa-laptop-code me-1"></i> Simulation</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/posttest' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'posttest' %}" id="post-link"><i class="fas fa-clipboard-check me-1"></i> Post-Test</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/references' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'references' %}"><i class="fas fa-book-open me-1"></i> References</a>
+                        </li>
+                        <li class="nav-item {% if request.path == '/feedback' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'feedback' %}"><i class="fas fa-comment-dots me-1"></i> Feedback</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container main-content my-4 py-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="card-title mb-0">{% block page_title %}{% endblock %}</h2>
+                </div>
+                <div class="card-body">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer mt-5 py-3">
+            <div class="container text-center">
+                <p class="text-muted mb-0">© {% now "Y" %} Huffman Coding Virtual Lab | <a href="#">About</a> | <a href="#">Contact</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix any width issues with main container and rows
+            document.querySelectorAll('.row').forEach(function(row) {
+                row.style.width = '100%';
+                row.style.marginLeft = '0';
+                row.style.marginRight = '0';
+            });
+            
+            // Fix pretest container width
+            document.querySelectorAll('.pretest-container').forEach(function(container) {
+                container.style.width = '100%';
+            });
+            
+            // Ensure the main container has the correct styling
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.style.maxWidth = '1200px';
+                mainContent.style.marginLeft = 'auto';
+                mainContent.style.marginRight = 'auto';
+            }
+
+            // Check if pre-test is completed
+            const preTestCompleted = localStorage.getItem('preTestCompleted') === 'true';
+            const simLink = document.getElementById('sim-link');
+            
+            if (!preTestCompleted && simLink) {
+                simLink.addEventListener('click', function(e) {
+                    if (!preTestCompleted) {
+                        e.preventDefault();
+                        Swal.fire({
+                            title: 'Complete Pre-Test First',
+                            text: 'You need to complete the Pre-Test before accessing the Simulation.',
+                            icon: 'info',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    }
+                });
+            }
+            
+            // Check if simulation is completed
+            const simulationCompleted = localStorage.getItem('simulationCompleted') === 'true';
+            const postLink = document.getElementById('post-link');
+            
+            if (!simulationCompleted && postLink) {
+                postLink.addEventListener('click', function(e) {
+                    if (!simulationCompleted) {
+                        e.preventDefault();
+                        Swal.fire({
+                            title: 'Complete Simulation First',
+                            text: 'You need to complete the Simulation before accessing the Post-Test.',
+                            icon: 'info',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
