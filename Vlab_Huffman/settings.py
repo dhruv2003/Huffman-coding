@@ -30,7 +30,16 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '$w@01*%6ykoxo)65pxdw*%po%1lc(u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com', '*']
+# Updated ALLOWED_HOSTS to include Railway domain
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '.onrender.com',
+    'sincere-truth-production-a6ac.up.railway.app',
+    '.up.railway.app',  # This will allow all Railway subdomains
+    '.railway.app',     # For future Railway domains
+    '*',                # Fallback for all hosts (only use in development)
+]
 
 
 # Application definition
