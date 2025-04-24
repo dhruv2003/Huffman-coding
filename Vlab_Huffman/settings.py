@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1', 
     '.onrender.com',
-    'sincere-truth-production-a6ac.up.railway.app',
+    'sincere-truth-production-d095.up.railway.app',
     '.up.railway.app',  # This will allow all Railway subdomains
     '.railway.app',     # For future Railway domains
     '*',                # Fallback for all hosts (only use in development)
