@@ -6,18 +6,21 @@ echo "Building the project..."
 # Make sure the script fails on errors
 set -e
 
+# Use the Python binary provided by Vercel
+export PYTHON_BINARY=$(which python3)
+
 # Install project dependencies
-pip install -r requirements.txt
+$PYTHON_BINARY -m pip install -r requirements.txt
 
 # Make migrations and migrate 
-python manage.py makemigrations
-python manage.py migrate
+$PYTHON_BINARY manage.py makemigrations
+$PYTHON_BINARY manage.py migrate
 
 # Create staticfiles directory if it doesn't exist
 mkdir -p staticfiles
 
 # Collect static files
-python manage.py collectstatic --noinput
+$PYTHON_BINARY manage.py collectstatic --noinput
 
 # Verify that the staticfiles directory exists and is not empty
 if [ -d "staticfiles" ]; then
