@@ -14,6 +14,7 @@ A comprehensive virtual laboratory for learning and experimenting with Huffman c
 - [Usage Guide](#usage-guide)
 - [Contributing](#contributing)
 - [License](#license)
+- [Development Guide](#development-guide)
 
 ## Overview
 
@@ -113,4 +114,76 @@ We welcome contributions to improve the Huffman Coding Virtual Lab. To contribut
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+## Development Guide
+
+### Setting Up the Development Environment
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/huffman-coding.git
+   cd huffman-coding
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file in the project root with the following variables:
+   ```
+   DJANGO_SECRET_KEY=your_secret_key_here
+   DJANGO_DEBUG=True
+   DB_ENGINE=django.db.backends.sqlite3
+   DB_NAME=db.sqlite3
+   ```
+
+5. Apply migrations:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+6. Create a superuser (optional):
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+### Running the Application
+
+1. Start the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+2. Open your web browser and navigate to:
+   - Application: `http://127.0.0.1:8000/`
+   - Admin interface: `http://127.0.0.1:8000/admin/`
+   - API documentation: `http://127.0.0.1:8000/api/docs/`
+
+### Testing
+
+Run all tests with:
+
+```bash
+python manage.py test
+```
+
+Or run specific test modules:
+
+```bash
+python manage.py test huffman.tests
+```
+
+For more detailed test output:
+
+```bash
+python run_tests.py
+```
 

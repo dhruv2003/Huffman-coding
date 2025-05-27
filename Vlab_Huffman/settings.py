@@ -31,15 +31,15 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '$w@01*%6ykoxo)65pxdw*%po%1lc(u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-# Updated ALLOWED_HOSTS to include Railway domain
+# Updated ALLOWED_HOSTS to include Vercel domain
 ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1', 
     '.onrender.com',
-    'sincere-truth-production-d095.up.railway.app',
-    '.up.railway.app',  # This will allow all Railway subdomains
-    '.railway.app',     # For future Railway domains
-    '*',                # Fallback for all hosts (only use in development)
+    '.up.railway.app',
+    '.vercel.app',  # For Vercel deployments
+    '.now.sh',      # For Vercel deployments
+    '*',            # Fallback for all hosts (only use in development)
 ]
 
 
@@ -54,6 +54,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "whitenoise.runserver_nostatic",
+    # REST Framework
+    'rest_framework',
+    # Swagger documentation
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -161,4 +165,25 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = os.environ.get('SECURE_BROWSER_XSS_FILTER', 'True') == 'True'
     SECURE_CONTENT_TYPE_NOSNIFF = os.environ.get('SECURE_CONTENT_TYPE_NOSNIFF', 'True') == 'True'
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+}
+
+REST_URLCONF = 'Vlab_Huffman.urls'
