@@ -23,11 +23,11 @@ mkdir -p staticfiles
 $PYTHON_BINARY manage.py collectstatic --noinput
 
 # Verify that the staticfiles directory exists and is not empty
-if [ -d "staticfiles" ]; then
-  echo "Staticfiles directory exists"
+if [ -d "staticfiles" ] && [ "$(ls -A staticfiles)" ]; then
+  echo "Staticfiles directory exists and is not empty"
   ls -la staticfiles
 else
-  echo "Error: staticfiles directory was not created"
+  echo "Error: staticfiles directory was not created or is empty"
   exit 1
 fi
 
