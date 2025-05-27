@@ -150,7 +150,7 @@ STATICFILES_DIRS = [
   os.path.join(BASE_DIR, "static")
 ]
 
-# Add a static root for production deployments
+# Ensure this path is absolute for Vercel
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Enable WhiteNoise compression and caching
